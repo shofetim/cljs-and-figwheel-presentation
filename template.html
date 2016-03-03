@@ -35,7 +35,7 @@ $endif$
 <!-- If the query includes 'print-pdf', use the PDF print sheet -->
 <script>
   document.write( '<link rel="stylesheet" href="css/print/' +
-    ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + 
+    ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) +
     '.css" type="text/css" media="print">' );
 </script>
 
@@ -63,7 +63,7 @@ $for(author)$<h3>$author$</h3>$endfor$
 <p>
 <h4>$date$</h4>
 </p>
-</section>  
+</section>
 
 $if(toc)$
 <section>
@@ -91,9 +91,9 @@ $body$
 
   // available themes are in /css/theme
   $if(theme)$
-    theme: Reveal.getQueryHash().theme || '$theme$', 
+    theme: Reveal.getQueryHash().theme || '$theme$',
   $else$
-    theme: Reveal.getQueryHash().theme || 'default', 
+    theme: Reveal.getQueryHash().theme || 'default',
   $endif$
 
   // default/cube/page/concave/zoom/linear/fade/none
