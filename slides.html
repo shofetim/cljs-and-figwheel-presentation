@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>ClojureScript &amp; Figwheel</title>
+
+<meta name="description" content="ClojureScript &amp; Figwheel">
+
+  <meta name="author" content="Jordan Schatz" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+
+<!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+  document.write( '<link rel="stylesheet" href="css/print/' +
+    ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) +
+    '.css" type="text/css" media="print">' );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+<section>
+<h1>ClojureScript &amp; Figwheel</h1>
+<h3>Jordan Schatz</h3>
+<p>
+<h4>Thursday, 03. March 2016</h4>
+</p>
+</section>
+
+
+<section id="show-me-the-code" class="level2">
+<h2>Show me the code!</h2>
+<p>Slides and such are at:</p>
+<p><a href="https://github.com/shofetim/cljs-and-figwheel-presentation" class="uri">https://github.com/shofetim/cljs-and-figwheel-presentation</a></p>
+</section>
+<section id="current-state-of-the-art" class="level2">
+<h2>Current State of the Art</h2>
+<p>(in JS land)</p>
+<section id="we-are-going-to-need-a-few-things..." class="level3">
+<h3>We are going to need a few things...</h3>
+<aside class="notes">
+Que dramatic presentation!
+</aside>
+</section>
+<section id="bower" class="level3">
+<h3>Bower!</h3>
+<figure>
+<img src="img/logos/small/bower.png" />
+</figure>
+</section>
+<section id="browserify" class="level3">
+<h3>Browserify!</h3>
+<figure>
+<img src="img/logos/small/browserify.png" />
+</figure>
+</section>
+<section id="grunt" class="level3">
+<h3>Grunt!</h3>
+<figure>
+<img src="img/logos/small/grunt.png" />
+</figure>
+</section>
+<section id="gulp" class="level3">
+<h3>Gulp!</h3>
+<figure>
+<img src="img/logos/small/gulp.png" />
+</figure>
+</section>
+<section id="less" class="level3">
+<h3>Less!</h3>
+<figure>
+<img src="img/logos/small/less.png" />
+</figure>
+</section>
+<section id="sass" class="level3">
+<h3>Sass!</h3>
+<figure>
+<img src="img/logos/small/sass.png" />
+</figure>
+</section>
+<section id="stylus" class="level3">
+<h3>Stylus!</h3>
+<figure>
+<img src="img/logos/small/stylus.png" />
+</figure>
+</section>
+<section id="npm" class="level3">
+<h3>NPM!</h3>
+<figure>
+<img src="img/logos/small/npm.png" />
+</figure>
+</section>
+<section id="yeoman" class="level3">
+<h3>Yeoman!</h3>
+<figure>
+<img src="img/logos/small/yeoman.png" />
+</figure>
+</section>
+<section id="webpack" class="level3">
+<h3>WebPack!</h3>
+<figure>
+<img src="img/logos/small/webpack.png" />
+</figure>
+</section>
+<section id="section" class="level3">
+<h3></h3>
+<figure>
+<img src="img/what-is-webpack.png" />
+</figure>
+</section>
+</section>
+<section id="what-do-we-get" class="level2">
+<h2>What do we get?</h2>
+<section id="some-interesting-syntax" class="level3">
+<h3>Some interesting syntax</h3>
+<pre class="js"><code>let {x, y ...vals} = {x: 1, y: 2, x: 3, _: 4};
+let nums =
+  () =&gt;
+  (function* (xs) {
+    for (let i of xs)
+    {let  [arg1, arg2] = xs;
+     yield i ** (arg1 + arg2)}
+    yield* (for (c of [4,5,6]) if (c!==4) c**c);
+  })([1,2,3]);
+for (let n of nums()) ::console.log(&#39;n: &#39; + n);
+::console.log([...nums()]);</code></pre>
+</section>
+<section id="dependency-injection" class="level3">
+<h3>Dependency injection</h3>
+<pre class="js"><code>app.controller(
+    &#39;DashboardController&#39;,
+    [&#39;$window&#39;, &#39;$scope&#39;, &#39;$rootScope&#39;, &#39;$interval&#39;,
+     function($window, $scope, $rootScope, $interval) {
+     }]);</code></pre>
+</section>
+<section id="edit-reload-click" class="level3">
+<h3>Edit, reload, click</h3>
+</section>
+<section id="whoops...-edit-reload-click" class="level3">
+<h3>Whoops... Edit, reload, click</h3>
+</section>
+<section id="whoops...-edit-reload-click-1" class="level3">
+<h3>Whoops... Edit, reload, click</h3>
+</section>
+<section id="grr..." class="level3">
+<h3>Grr...</h3>
+</section>
+</section>
+<section id="an-alternative" class="level2">
+<h2>An alternative</h2>
+<ul>
+<li>Lein</li>
+<li>ClojureScript</li>
+<li>Figwheel</li>
+<li>(maybe Docker?)</li>
+</ul>
+</section>
+<section id="lein" class="level2">
+<h2>Lein</h2>
+<section id="handles-dependencies" class="level3">
+<h3>Handles dependencies</h3>
+</section>
+<section id="cljs.js" class="level3">
+<h3>CLJS.JS</h3>
+<p><a href="http://cljsjs.github.io/" class="uri">http://cljsjs.github.io/</a> <img src="img/cljs-js.png" /></p>
+</section>
+<section id="and-everything-else" class="level3">
+<h3>And everything else</h3>
+<ul>
+<li>Compilation</li>
+<li>Build / unification</li>
+<li>Even deploy...</li>
+</ul>
+</section>
+</section>
+<section id="what-is-figwheel" class="level2">
+<h2>What is Figwheel?</h2>
+<section id="section-1" class="level3">
+<h3></h3>
+</section>
+<section id="live-code-reloading" class="level3">
+<h3>Live code reloading</h3>
+<p>If you write <a href="https://github.com/bhauman/lein-figwheel#writing-reloadable-code"><strong>reloadable code</strong></a>, figwheel can facilitate automated live interactive programming. Every time you save your ClojureScript source file, the changes are sent to the browser so that you can see the effects of modifying your code in real time.</p>
+</section>
+<section id="supports-node.js" class="level3">
+<h3>Supports Node.js</h3>
+<p>You can <a href="https://github.com/bhauman/lein-figwheel/wiki/Node.js-development-with-figwheel">use figwheel to live code ClojureScript in Node.js</a>!</p>
+</section>
+<section id="static-file-server" class="level3">
+<h3>Static file server</h3>
+<p>The inclusion of a <strong>static file server</strong> allows you to get a decent ClojureScript development environment up and running quickly. For convenience there is a <code>:ring-handler</code> option so you can load a ring handler into the figwheel server.</p>
+</section>
+<section id="live-css-reloading" class="level3">
+<h3>Live CSS reloading</h3>
+<p>Figwheel will reload your CSS live as well.</p>
+</section>
+<section id="live-javascript-reloading" class="level3">
+<h3>Live JavaScript reloading</h3>
+<p>Figwheel can live reload your JavaScript source files.</p>
+</section>
+<section id="heads-up-display" class="level3">
+<h3>Heads up display</h3>
+<p>Figwheel has a non-intrusive heads up display that gives you feedback on how well your project is compiling. By writing a shell script you can click on files in the heads up display and they will open in your editor!</p>
+</section>
+<section id="built-in-clojurescript-repl" class="level3">
+<h3>Built-in ClojureScript REPL</h3>
+<p>When you launch figwheel it not only starts a live building/reloading process but it also optionally launches a CLJS REPL into your running application. This REPL shares compilation information with the figwheel builder, so as you change your code the REPL is also aware of the code changes. The REPL also has some special built-in control functions that allow you to control the auto-building process and execute various build tasks without having to stop and rerun lein-figwheel.</p>
+</section>
+<section id="robust-connection" class="level3">
+<h3>Robust connection</h3>
+<p>Figwheel's connection is fairly robust. I have experienced figwheel sessions that have lasted for days through multiple OS sleeps. You can also use figwheel like a REPL if you are OK with using <code>print</code> to output the evaluation results to the browser console.</p>
+</section>
+<section id="message-broadcast" class="level3">
+<h3>Message broadcast</h3>
+<p>Figwheel <strong>broadcasts</strong> changes to all connected clients. This means you can see code and CSS changes take place in real time on your phone and in your laptop browser simultaneously.</p>
+</section>
+<section id="respects-dependencies" class="level3">
+<h3>Respects dependencies</h3>
+<p>Figwheel will not load a file that has not been required. It will also respond well to new requirements and dependency tree changes.</p>
+</section>
+<section id="calculates-minimal-reload-set" class="level3">
+<h3>Calculates minimal reload set</h3>
+<p>Figwheel does its best to only reload what needs to be reloaded. This minimizes the surface area of dynamically reloaded code, which in turn should increase the stability of the client environment.</p>
+</section>
+<section id="doesnt-load-code-that-is-generating-warnings" class="level3">
+<h3>Doesn't load code that is generating warnings</h3>
+<p>If your ClojureScript code is generating compiler warnings Figwheel won't load it. This, again, is very helpful in keeping the client environment stable. This behavior is optional and can be turned off.</p>
+</section>
+</section>
+<section id="ok-how-do-i-get-it" class="level2">
+<h2>Ok, how do I get it?</h2>
+<section id="the-easy-way" class="level3">
+<h3>The easy way</h3>
+</section>
+<section id="chestnut" class="level3">
+<h3>Chestnut</h3>
+<p><a href="https://github.com/plexus/chestnut" class="uri">https://github.com/plexus/chestnut</a></p>
+</section>
+<section id="demo" class="level3">
+<h3>Demo</h3>
+<aside class="notes">
+<ul>
+<li>lein new chestnut <name> and go!</li>
+<li>Edit code (see no need to refresh!)</li>
+<li>Edit code badly (see no auto reload!)</li>
+<li>We have a REPL!</li>
+<li>REPL actually runs inside the browser, or phone, or NodeJS or app or... or...</li>
+</ul>
+</aside>
+</section>
+<section id="my-setup" class="level3">
+<h3>My Setup</h3>
+</section>
+<section id="demo-1" class="level3">
+<h3>Demo</h3>
+<aside class="notes">
+<ul>
+<li>docker-compose up and wala</li>
+<li>om-bootstrap</li>
+<li>all state in a single atom</li>
+<li>components (input)</li>
+<li>The admin</li>
+<li>syncing</li>
+<li>bidi for client and server routes</li>
+<li>immutant</li>
+<li>yesql</li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="extra-credit" class="level2">
+<h2>Extra Credit</h2>
+<section id="js-interopt" class="level3">
+<h3>JS interopt</h3>
+</section>
+<section id="the-google-closure-compiler" class="level3">
+<h3>The Google Closure Compiler</h3>
+<p>(closure with an S)</p>
+<aside class="notes">
+Dead code elimination, size of an app, URSportFB for example
+</aside>
+</section>
+<section id="callback-hell" class="level3">
+<h3>Callback hell</h3>
+</section>
+<section id="beyond-figwheel-dev-cards-om.next" class="level3">
+<h3>Beyond Figwheel: Dev cards? Om.next() ?</h3>
+</section>
+<section id="restfull-apis" class="level3">
+<h3>RESTfull APIs</h3>
+<aside class="notes">
+Componentized Sync
+</aside>
+</section>
+</section>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: false,
+
+  // available themes are in /css/theme
+      theme: Reveal.getQueryHash().theme || 'serif',
+  
+  // default/cube/page/concave/zoom/linear/fade/none
+      transition: Reveal.getQueryHash().transition || 'slide',
+  
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+  });
+
+</script>
+
+</body>
+</html>
